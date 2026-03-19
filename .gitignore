@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Environment variables (NEVER commit credentials)
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# Claude Code — personal settings and auto-memory (machine-local, not for repo)
+.claude/settings.local.json
+.claude/projects/

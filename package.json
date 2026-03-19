@@ -1,0 +1,37 @@
+{
+  "name": "@panama-payments/cmf",
+  "version": "0.1.0",
+  "description": "SDK for CMF (Banco General / HNL) financing integration in Panama",
+  "license": "MIT",
+  "main": "./dist/server/index.js",
+  "types": "./dist/server/index.d.ts",
+  "exports": {
+    "./server": {
+      "import": "./dist/server/index.js",
+      "require": "./dist/server/index.cjs",
+      "types": "./dist/server/index.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react/index.js",
+      "types": "./dist/react/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "axios": "^1.7.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "typescript": "^5.0.0"
+  }
+}
