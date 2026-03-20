@@ -129,11 +129,13 @@ sequenceDiagram
 
 The OTP + customer search portion of the flow follows this state machine:
 
-```
-idle
-  └─► [user enters email/phone] ─► sendOtp() ─► verifying
-        └─► [user enters code] ─► verifyOtp() ─► done
-              └─► [error] ─► retry (max 3 for phone)
+```mermaid
+stateDiagram-v2
+    [*] --> idle
+    idle --> verifying : user enters email/phone → sendOtp()
+    verifying --> done : user enters code → verifyOtp() ✓
+    verifying --> verifying : error → retry (max 3 for phone)
+    done --> [*]
 ```
 
 Use the `useCMFOtp` hook, which manages this state internally via the `step` property:

@@ -11,6 +11,38 @@ CMF requires OTP verification to look up a customer's account for the first time
 
 ---
 
+## Entity Relationship Diagram
+
+```mermaid
+erDiagram
+    YourCustomers ||--o| CMFInfos : "has CMF link"
+    YourOrders ||--o| CMFTransactions : "has CMF payment"
+    CMFInfos {
+        int id PK
+        string customerId UK "Your internal customer ID"
+        string cmfCustomerId "CMF UUID"
+        string email UK
+        string phone UK
+        string customerProductId "CMF product UUID"
+        text accountNumber "Encrypted"
+    }
+    CMFTransactions {
+        int id PK
+        string orderId "Your internal order ID"
+        string customerId "Your internal customer ID"
+        string receiptNumber UK "Max 20 chars"
+        string cmfTransactionCode "CMF reference"
+        enum paymentType "quotas | normal"
+        decimal amount "USD"
+        int loanTerm "Installments (nullable)"
+        string planUniqueCode "Selected plan (nullable)"
+        jsonb cmfResponse "Full API response"
+        boolean verified "Confirmed via verifyTransaction()"
+    }
+```
+
+---
+
 ## Sequelize Schema
 
 ```typescript

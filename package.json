@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "SDK for CMF (Banco General / HNL) financing integration in Panama",
   "license": "MIT",
+  "contributors": [
+    { "name": "captainsparrow10", "url": "https://github.com/captainsparrow10" },
+    { "name": "Reddsito", "url": "https://github.com/Reddsito" }
+  ],
   "main": "./dist/server/index.js",
   "types": "./dist/server/index.d.ts",
   "exports": {
