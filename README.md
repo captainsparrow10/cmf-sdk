@@ -149,18 +149,19 @@ function CMFCheckout() {
 
 ## Architecture
 
-```
-@panama-payments/cmf
-├── /server          Node.js only — CMFClient with all API methods
-└── /react           Headless hooks — call your backend, never CMF directly
+```mermaid
+graph LR
+    Browser["Browser<br/>(useCMF* hooks)"] --> Backend["Your Backend API<br/>(/api/cmf/* routes)"]
+    Backend --> CMFClient["CMFClient<br/>(server-only)"]
+    CMFClient --> CMF["CMF API<br/>(Banco General)"]
 ```
 
 The separation ensures that merchant credentials never reach the browser. Your backend acts as a secure proxy.
 
-```
-Browser → Your Backend API → CMFClient → CMF API (Banco General)
-   (useCMF* hooks)  (/api/cmf/* routes)   (server-only)
-```
+| Export | Environment | Contains |
+|--------|-------------|----------|
+| `@panama-payments/cmf/server` | Node.js only | `CMFClient` with all API methods |
+| `@panama-payments/cmf/react` | Browser | Headless hooks — call your backend, never CMF directly |
 
 ---
 
